@@ -174,18 +174,37 @@ local function atualizarAbaSalvos()
 	local scripts = lerScripts()
 	local y = 0
 	for nome, conteudo in pairs(scripts) do
+		-- Botão de carregar script
 		local btn = Instance.new("TextButton")
-		btn.Size = UDim2.new(1, -10, 0, 30)
+		btn.Size = UDim2.new(0.7, -5, 0, 30)
 		btn.Position = UDim2.new(0, 5, 0, y)
 		btn.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
 		btn.Text = nome
 		btn.TextColor3 = Color3.fromRGB(255, 255, 255)
 		btn.Font = Enum.Font.SourceSansBold
 		btn.TextSize = 14
+		btn.TextXAlignment = Enum.TextXAlignment.Left
 		btn.Parent = abaSalvos
 
 		btn.MouseButton1Click:Connect(function()
 			scriptBox.Text = conteudo
+		end)
+
+		-- Botão de deletar
+		local delBtn = Instance.new("TextButton")
+		delBtn.Size = UDim2.new(0.3, -10, 0, 30)
+		delBtn.Position = UDim2.new(0.7, 5, 0, y)
+		delBtn.BackgroundColor3 = Color3.fromRGB(100, 0, 0)
+		delBtn.Text = "X"
+		delBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+		delBtn.Font = Enum.Font.SourceSansBold
+		delBtn.TextSize = 14
+		delBtn.Parent = abaSalvos
+
+		delBtn.MouseButton1Click:Connect(function()
+			scripts[nome] = nil
+			writefile("saved_scripts.json", HttpService:JSONEncode(scripts))
+			atualizarAbaSalvos()
 		end)
 
 		y = y + 35
