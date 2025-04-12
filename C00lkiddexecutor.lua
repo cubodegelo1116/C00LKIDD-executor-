@@ -6,8 +6,14 @@ local function salvarScript(nome, conteudo)
     pcall(function()
         scripts = HttpService:JSONDecode(readfile("saved_scripts.json"))
     end)
-    scripts[nome] = conteudo
-    writefile("saved_scripts.json", HttpService:JSONEncode(scripts))
+    
+    -- Se o script já existir, não substitua
+    if not scripts[nome] then
+        scripts[nome] = conteudo
+        writefile("saved_scripts.json", HttpService:JSONEncode(scripts))
+    else
+        warn("O script com esse nome já existe!")
+    end
 end
 
 local function lerScripts()
