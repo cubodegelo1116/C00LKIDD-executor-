@@ -4,6 +4,7 @@ local main = Instance.new("Frame")
 local title = Instance.new("TextLabel")
 local closeBtn = Instance.new("TextButton")
 local executeBtn = Instance.new("TextButton")
+local clearBtn = Instance.new("TextButton")
 local scriptBox = Instance.new("TextBox")
 
 executor.Name = "FakeExecutor"
@@ -59,7 +60,7 @@ scriptBox.TextYAlignment = Enum.TextYAlignment.Top
 executeBtn.Name = "ExecuteBtn"
 executeBtn.Parent = main
 executeBtn.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
-executeBtn.Position = UDim2.new(0.35, 0, 1, -40)
+executeBtn.Position = UDim2.new(0.6, 0, 1, -40)
 executeBtn.Size = UDim2.new(0.3, 0, 0, 30)
 executeBtn.Font = Enum.Font.SourceSansBold
 executeBtn.Text = "Executar"
@@ -73,4 +74,17 @@ executeBtn.MouseButton1Click:Connect(function()
 	if not success then
 		warn("Erro ao executar: " .. err)
 	end
+end)
+
+clearBtn.Name = "ClearBtn"
+clearBtn.Parent = main
+clearBtn.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+clearBtn.Position = UDim2.new(0.3, 0, 1, -40)
+clearBtn.Size = UDim2.new(0.3, 0, 0, 30)
+clearBtn.Font = Enum.Font.SourceSansBold
+clearBtn.Text = "Limpar"
+clearBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+clearBtn.TextSize = 18
+clearBtn.MouseButton1Click:Connect(function()
+	scriptBox.Text = ""
 end)
