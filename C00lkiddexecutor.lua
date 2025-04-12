@@ -155,8 +155,9 @@ clearBtn.MouseButton1Click:Connect(function()
 end)
 
 salvarBtn.MouseButton1Click:Connect(function()
-	local nome = "Script_"..tostring(math.random(1000,9999))
+	local nome = "Script_" .. os.date("%Y-%m-%d_%H-%M-%S")
 	salvarScript(nome, scriptBox.Text)
+	atualizarAbaSalvos()
 end)
 
 -- Aba lateral com scripts salvos
