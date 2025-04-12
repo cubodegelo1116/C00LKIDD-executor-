@@ -113,7 +113,7 @@ scriptBox.ClearTextOnFocus = false
 scriptBox.TextWrapped = true
 scriptBox.TextXAlignment = Enum.TextXAlignment.Left
 scriptBox.TextYAlignment = Enum.TextYAlignment.Top
-scriptBox.PlaceholderText = "-- Escreva seu script aqui"
+scriptBox.PlaceholderText = "--feito por cubodegelo1116"
 scriptBox.Parent = main
 
 -- Botões de baixo
