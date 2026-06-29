@@ -14,7 +14,7 @@ local Player = game.Players.LocalPlayer
 local UIS = game:GetService("UserInputService")
 
 --------------------------------------------------
--- ANTI DUPLICATE FORTE
+-- ANTI DUPLICATE (Só no início)
 --------------------------------------------------
 local function destroyOldGUI()
     local old = Player.PlayerGui:FindFirstChild("DevEngine_Internal")
@@ -23,7 +23,7 @@ local function destroyOldGUI()
     end
 end
 
-destroyOldGUI()
+destroyOldGUI() -- Só roda uma vez
 
 --------------------------------------------------
 -- PARENTING
@@ -45,7 +45,7 @@ ScreenGui.ScreenGui.Name = "DevEngine_Internal"
 ScreenGui.ScreenGui.ResetOnSpawn = true
 
 --------------------------------------------------
--- FRAME
+-- FRAME (resto igual)
 --------------------------------------------------
 ScreenGui.Frame.Name = "Frame"
 ScreenGui.Frame.Position = UDim2.new(0.315,0,0.231,0)
@@ -148,11 +148,9 @@ ScreenGui.Clear.MouseButton1Click:Connect(function()
 end)
 
 --------------------------------------------------
--- EXECUTE FUNCTION (SEM PRINTS)
+-- EXECUTE FUNCTION (SEM DESTRUIR A GUI)
 --------------------------------------------------
 ScreenGui.Execute.MouseButton1Click:Connect(function()
-    destroyOldGUI() -- Anti-duplicate
-    
     local text = ScreenGui.codebox.Text
     if text == "" then
         warn("No code entered.")
@@ -187,7 +185,7 @@ ScreenGui.MinimizedButton.MouseButton1Click:Connect(function()
 end)
 
 --------------------------------------------------
--- DRAG SYSTEM - Main Frame
+-- DRAG SYSTEMS (mantidos iguais)
 --------------------------------------------------
 local dragging = false
 local dragInput
@@ -229,9 +227,7 @@ UIS.InputChanged:Connect(function(input)
     end
 end)
 
---------------------------------------------------
--- DRAG SYSTEM - Minimized Button
---------------------------------------------------
+-- Drag do botão OPEN
 local minDragging = false
 local minDragInput
 local minDragStart
