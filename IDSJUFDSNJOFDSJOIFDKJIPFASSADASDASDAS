@@ -1,0 +1,273 @@
+local ScreenGui = {
+    ScreenGui = Instance.new("ScreenGui"),
+    Frame = Instance.new("Frame"),
+    codebox = Instance.new("TextBox"),
+    Execute = Instance.new("TextButton"),
+    Clear = Instance.new("TextButton"),
+    dragframe = Instance.new("Frame"),
+    TextLabel = Instance.new("TextLabel"),
+    Minimize = Instance.new("TextButton"),
+    MinimizedButton = Instance.new("TextButton")
+}
+
+local Player = game.Players.LocalPlayer
+local UIS = game:GetService("UserInputService")
+
+--------------------------------------------------
+-- ANTI DUPLICATE FORTE
+--------------------------------------------------
+local function destroyOldGUI()
+    local old = Player.PlayerGui:FindFirstChild("DevEngine_Internal")
+    if old then
+        old:Destroy()
+    end
+end
+
+destroyOldGUI()
+
+--------------------------------------------------
+-- PARENTING
+--------------------------------------------------
+ScreenGui.ScreenGui.Parent = Player:WaitForChild("PlayerGui")
+ScreenGui.Frame.Parent = ScreenGui.ScreenGui
+ScreenGui.codebox.Parent = ScreenGui.Frame
+ScreenGui.Execute.Parent = ScreenGui.Frame
+ScreenGui.Clear.Parent = ScreenGui.Frame
+ScreenGui.dragframe.Parent = ScreenGui.Frame
+ScreenGui.TextLabel.Parent = ScreenGui.dragframe
+ScreenGui.Minimize.Parent = ScreenGui.dragframe
+ScreenGui.MinimizedButton.Parent = ScreenGui.ScreenGui
+
+--------------------------------------------------
+-- SCREENGUI
+--------------------------------------------------
+ScreenGui.ScreenGui.Name = "DevEngine_Internal"
+ScreenGui.ScreenGui.ResetOnSpawn = true
+
+--------------------------------------------------
+-- FRAME
+--------------------------------------------------
+ScreenGui.Frame.Name = "Frame"
+ScreenGui.Frame.Position = UDim2.new(0.315,0,0.231,0)
+ScreenGui.Frame.Size = UDim2.new(0,416,0,284)
+ScreenGui.Frame.BackgroundColor3 = Color3.fromRGB(255,255,255)
+ScreenGui.Frame.BorderSizePixel = 0
+
+--------------------------------------------------
+-- CODEBOX
+--------------------------------------------------
+ScreenGui.codebox.Name = "codebox"
+ScreenGui.codebox.Position = UDim2.new(0.025,0,0.112,0)
+ScreenGui.codebox.Size = UDim2.new(0,399,0,214)
+ScreenGui.codebox.BackgroundColor3 = Color3.fromRGB(255,255,255)
+ScreenGui.codebox.Text = ""
+ScreenGui.codebox.TextSize = 16
+ScreenGui.codebox.Font = Enum.Font.Code
+ScreenGui.codebox.TextColor3 = Color3.fromRGB(0,0,0)
+ScreenGui.codebox.TextXAlignment = Enum.TextXAlignment.Left
+ScreenGui.codebox.TextYAlignment = Enum.TextYAlignment.Top
+ScreenGui.codebox.ClearTextOnFocus = false
+ScreenGui.codebox.MultiLine = true
+
+--------------------------------------------------
+-- EXECUTE BUTTON
+--------------------------------------------------
+ScreenGui.Execute.Name = "Execute"
+ScreenGui.Execute.Position = UDim2.new(0.025,0,0.892,0)
+ScreenGui.Execute.Size = UDim2.new(0,95,0,22)
+ScreenGui.Execute.BackgroundColor3 = Color3.fromRGB(255,255,255)
+ScreenGui.Execute.Text = "Execute"
+ScreenGui.Execute.TextSize = 20
+ScreenGui.Execute.Font = Enum.Font.SourceSans
+ScreenGui.Execute.TextColor3 = Color3.fromRGB(0,0,0)
+
+--------------------------------------------------
+-- CLEAR BUTTON
+--------------------------------------------------
+ScreenGui.Clear.Name = "Clear"
+ScreenGui.Clear.Position = UDim2.new(0.270,0,0.892,0)
+ScreenGui.Clear.Size = UDim2.new(0,95,0,22)
+ScreenGui.Clear.BackgroundColor3 = Color3.fromRGB(255,255,255)
+ScreenGui.Clear.Text = "Clear"
+ScreenGui.Clear.TextSize = 20
+ScreenGui.Clear.Font = Enum.Font.SourceSans
+ScreenGui.Clear.TextColor3 = Color3.fromRGB(0,0,0)
+
+--------------------------------------------------
+-- DRAGFRAME
+--------------------------------------------------
+ScreenGui.dragframe.Name = "dragframe"
+ScreenGui.dragframe.Position = UDim2.new(0,0,0,0)
+ScreenGui.dragframe.Size = UDim2.new(0,416,0,23)
+ScreenGui.dragframe.BackgroundColor3 = Color3.fromRGB(255,255,255)
+ScreenGui.dragframe.BorderSizePixel = 0
+
+--------------------------------------------------
+-- TITLE
+--------------------------------------------------
+ScreenGui.TextLabel.Name = "TextLabel"
+ScreenGui.TextLabel.Position = UDim2.new(0.018,0,0.09,0)
+ScreenGui.TextLabel.Size = UDim2.new(0,250,0,18)
+ScreenGui.TextLabel.BackgroundTransparency = 1
+ScreenGui.TextLabel.Text = "DevEngine Internal Executor"
+ScreenGui.TextLabel.TextSize = 18
+ScreenGui.TextLabel.Font = Enum.Font.SourceSans
+ScreenGui.TextLabel.TextColor3 = Color3.fromRGB(0,0,0)
+ScreenGui.TextLabel.TextXAlignment = Enum.TextXAlignment.Left
+
+--------------------------------------------------
+-- MINIMIZE BUTTON (X)
+--------------------------------------------------
+ScreenGui.Minimize.Name = "Minimize"
+ScreenGui.Minimize.Position = UDim2.new(0.92, 0, 0.1, 0)
+ScreenGui.Minimize.Size = UDim2.new(0, 25, 0, 18)
+ScreenGui.Minimize.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ScreenGui.Minimize.Text = "X"
+ScreenGui.Minimize.TextSize = 14
+ScreenGui.Minimize.Font = Enum.Font.SourceSansBold
+ScreenGui.Minimize.TextColor3 = Color3.fromRGB(0, 0, 0)
+
+--------------------------------------------------
+-- MINIMIZED BUTTON (OPEN)
+--------------------------------------------------
+ScreenGui.MinimizedButton.Name = "OpenButton"
+ScreenGui.MinimizedButton.Position = UDim2.new(0.45, 0, 0.1, 0)
+ScreenGui.MinimizedButton.Size = UDim2.new(0, 80, 0, 40)
+ScreenGui.MinimizedButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ScreenGui.MinimizedButton.Text = "OPEN"
+ScreenGui.MinimizedButton.TextSize = 18
+ScreenGui.MinimizedButton.Font = Enum.Font.SourceSansBold
+ScreenGui.MinimizedButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+ScreenGui.MinimizedButton.Visible = false
+
+--------------------------------------------------
+-- CLEAR FUNCTION
+--------------------------------------------------
+ScreenGui.Clear.MouseButton1Click:Connect(function()
+    ScreenGui.codebox.Text = ""
+end)
+
+--------------------------------------------------
+-- EXECUTE FUNCTION (SEM PRINTS)
+--------------------------------------------------
+ScreenGui.Execute.MouseButton1Click:Connect(function()
+    destroyOldGUI() -- Anti-duplicate
+    
+    local text = ScreenGui.codebox.Text
+    if text == "" then
+        warn("No code entered.")
+        return
+    end
+    
+    local success, err = pcall(function()
+        local func = loadstring(text)
+        if func then
+            func()
+        else
+            error("Failed to load code")
+        end
+    end)
+    
+    if not success then
+        warn("Execution Error: " .. tostring(err))
+    end
+end)
+
+--------------------------------------------------
+-- MINIMIZE / RESTORE
+--------------------------------------------------
+ScreenGui.Minimize.MouseButton1Click:Connect(function()
+    ScreenGui.Frame.Visible = false
+    ScreenGui.MinimizedButton.Visible = true
+end)
+
+ScreenGui.MinimizedButton.MouseButton1Click:Connect(function()
+    ScreenGui.Frame.Visible = true
+    ScreenGui.MinimizedButton.Visible = false
+end)
+
+--------------------------------------------------
+-- DRAG SYSTEM - Main Frame
+--------------------------------------------------
+local dragging = false
+local dragInput
+local dragStart
+local startPos
+
+local function update(input)
+    local delta = input.Position - dragStart
+    ScreenGui.Frame.Position = UDim2.new(
+        startPos.X.Scale,
+        startPos.X.Offset + delta.X,
+        startPos.Y.Scale,
+        startPos.Y.Offset + delta.Y
+    )
+end
+
+ScreenGui.dragframe.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+        dragging = true
+        dragStart = input.Position
+        startPos = ScreenGui.Frame.Position
+        input.Changed:Connect(function()
+            if input.UserInputState == Enum.UserInputState.End then
+                dragging = false
+            end
+        end)
+    end
+end)
+
+ScreenGui.dragframe.InputChanged:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseMovement then
+        dragInput = input
+    end
+end)
+
+UIS.InputChanged:Connect(function(input)
+    if input == dragInput and dragging then
+        update(input)
+    end
+end)
+
+--------------------------------------------------
+-- DRAG SYSTEM - Minimized Button
+--------------------------------------------------
+local minDragging = false
+local minDragInput
+local minDragStart
+local minStartPos
+
+local function updateMin(input)
+    local delta = input.Position - minDragStart
+    ScreenGui.MinimizedButton.Position = UDim2.new(
+        minStartPos.X.Scale,
+        minStartPos.X.Offset + delta.X,
+        minStartPos.Y.Scale,
+        minStartPos.Y.Offset + delta.Y
+    )
+end
+
+ScreenGui.MinimizedButton.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+        minDragging = true
+        minDragStart = input.Position
+        minStartPos = ScreenGui.MinimizedButton.Position
+        input.Changed:Connect(function()
+            if input.UserInputState == Enum.UserInputState.End then
+                minDragging = false
+            end
+        end)
+    end
+end)
+
+ScreenGui.MinimizedButton.InputChanged:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseMovement then
+        minDragInput = input
+    end
+end)
+
+UIS.InputChanged:Connect(function(input)
+    if input == minDragInput and minDragging then
+        updateMin(input)
+    end
+end)
